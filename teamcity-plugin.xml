@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teamcity-plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:schemas-jetbrains-com:teamcity-plugin-v1-xml">
+  <info>
+    <name>crossbrowsertestingPlugin</name>
+    <display-name>crossbrowsertestingPlugin</display-name>
+    <version>0.1</version>
+    <description>This plugin integrates TeamCity users with Selenium Testing and Screenshot Testing on CrossBrowserTesting.com. CrossBrowserTesting.com provides cross browser testing of websites, webpages, and web applications on Windows, Macs, and real iPhones, iPads, and Android Phones and Tablets.</description>
+    <download-url>Plugin download URL</download-url>
+    <email>info@crossbrowsertesting.com</email>
+    <vendor>
+      <name>CrossBrowserTesting.com</name>
+      <url>https://crossbrowsertesting.com</url>
+    </vendor>
+  </info>
+  <deployment use-separate-classloader="true" />
+</teamcity-plugin>
