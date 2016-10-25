@@ -26,7 +26,6 @@ Wiki: https://github.com/crossbrowsertesting/teamcity-plugin/wiki/CrossBrowserTe
 The zip will be saved in the `target` directory.
 ##### To release
 Make sure the pom.xml file's version has the new point release and has **-SNAPSHOT**
-<pre> mvn release:prepare release:perform </pre>
 
 [latest_version]: http://updates.jenkins-ci.org/latest/crossbrowsertesting.hpi
 [maven]: https://maven.apache.org/index.html
