@@ -27,7 +27,7 @@ The zip will be saved in the `target` directory.
 ##### To release
 Make sure the pom.xml file's version has the new point release and has **-SNAPSHOT**
 
-[latest_version]: http://updates.jenkins-ci.org/latest/crossbrowsertesting.hpi
+[latest_version]: https://github.com/crossbrowsertesting/teamcity-plugin/releases/latest
 [maven]: https://maven.apache.org/index.html
 [java]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
 [teamcity_install]: https://confluence.jetbrains.com/display/TCD10/Installing+Additional+Plugins
