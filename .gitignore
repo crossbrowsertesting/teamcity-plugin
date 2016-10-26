@@ -15,5 +15,9 @@ hs_err_pid*
 # Mac Files
 .DS_Store
 
-# Output directory
-target
+# Output Directories
+build/target/
+crossbrowsertestingPlugin-agent/target/
+crossbrowsertestingPlugin-common/target/
+crossbrowsertestingPlugin-server/target/
+
