@@ -20,7 +20,6 @@
     *    along with TeamCity Stash.  If not, see <http://www.gnu.org/licenses/>.
     */
   --%>
-<jsp:useBean id="propertiesBean" scope="request" type="jetbrains.buildServer.controllers.BasePropertiesBean"/>
 
 <script type="text/javascript" src="${jquery}"></script>
 
@@ -52,17 +51,6 @@
     	<input type="button" id="add_selenium_test" value="Add a Selenium Test"/>
 	</td>
 </tr>
-<!--
-<tr>
-	<th>Screenshots</th>
-	<td>
-		<props:hiddenProperty id="screenshots_browserlists" name="screenshots_browserlists" value=""/>
-    	<div id="ss_browserlists">
-    	</div>
-    	<input type="button" id="add_screenshots_test" value="Add a Screenshots Test"/>
-	</td>
-</tr>
--->
 </l:settingsGroup>
 <l:settingsGroup title="Other">
 <tr>
@@ -72,6 +60,7 @@
     <span class="smallNote">Runs the nodejs cbt_tunnels module</span>
   </td>
 </tr>
+<!--
 <tr>
   <th>Enable Test Results Pages</th>
   <td>
@@ -79,8 +68,9 @@
     <span class="smallNote">As tests finish, links will populate on the sidebar of the build that allow you to view the results from the test</span>
   </td>
 </tr>
+-->
 </l:settingsGroup>
-<script type="text/javascript">
+<script>
 var $ = jQuery; // have to set the shorthand manually.... not sure why...
 const selenium_configurations = ${selenium_browsers};
 

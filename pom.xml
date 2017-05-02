@@ -3,12 +3,16 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin</groupId>
   <artifactId>crossbrowsertestingPlugin</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
       <teamcity-version>10.0</teamcity-version>
   </properties>
   <repositories>
+  	<repository>
+		<id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
     <repository>
         <id>JetBrains</id>
         <url>http://repository.jetbrains.com/all</url>
@@ -53,11 +57,15 @@
 	    <artifactId>commons-codec</artifactId>
 	    <version>1.9</version>
 	</dependency>
+      <dependency>
+	    <groupId>com.github.crossbrowsertesting</groupId>
+	    <artifactId>ci-common</artifactId>
+	    <version>0.13-SNAPSHOT</version>
+	  </dependency>
   </dependencies>
   <modules>
     <module>crossbrowsertestingPlugin-server</module>
     <module>crossbrowsertestingPlugin-agent</module>
-    <module>crossbrowsertestingPlugin-common</module>
     <module>build</module>
   </modules>
 </project>

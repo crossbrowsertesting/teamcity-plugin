@@ -4,19 +4,11 @@
   <parent>
     <artifactId>crossbrowsertestingPlugin</artifactId>
     <groupId>com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin</groupId>
-    <version>0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>crossbrowsertestingPlugin-server</artifactId>
   <packaging>jar</packaging>
   <dependencies>
-
-    <dependency>
-      <groupId>com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin</groupId>
-      <artifactId>crossbrowsertestingPlugin-common</artifactId>
-      <version>0.1-SNAPSHOT</version>
-      <scope>compile</scope>
-    </dependency>
-
     <dependency>
       <groupId>org.jetbrains.teamcity</groupId>
       <artifactId>server-api</artifactId>
@@ -38,5 +30,10 @@
       <version>${teamcity-version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+  		<groupId>org.json</groupId>
+  		<artifactId>json</artifactId>
+  		<version>20160810</version>
+	</dependency>
   </dependencies>
 </project>
