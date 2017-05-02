@@ -4,7 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
        default-autowire="constructor">
   <bean id="cbtBuildFeature" class="com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin.ui.CBTBuildFeature"/>
-  <bean class="com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin.ui.SettingsPageController"/>
-  <bean class="com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin.CBTServerAdapter" init-method="register"/>
-  
+  <bean id="cbtResultsTab" class="com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin.ui.ResultsTab"/>
+  <bean class="com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin.ui.SettingsPageController"/>  
 </beans>

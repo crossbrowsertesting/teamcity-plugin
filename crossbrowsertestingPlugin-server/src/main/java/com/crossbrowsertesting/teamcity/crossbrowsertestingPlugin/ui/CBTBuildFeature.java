@@ -21,9 +21,12 @@ package com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin.ui;
 import jetbrains.buildServer.serverSide.BuildFeature;
 import jetbrains.buildServer.serverSide.InvalidProperty;
 import jetbrains.buildServer.serverSide.PropertiesProcessor;
+import jetbrains.buildServer.serverSide.SBuildServer;
 import jetbrains.buildServer.web.openapi.PluginDescriptor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import com.crossbrowsertesting.api.Account;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,64 +35,48 @@ import java.util.Map;
 
 public class CBTBuildFeature extends BuildFeature {
     private final PluginDescriptor descriptor;
-    private String teamCityVersion;
+    private final SBuildServer buildServer;
     public Map<String, String> params;
 
-    public CBTBuildFeature(@NotNull final PluginDescriptor descriptor) {
+    public CBTBuildFeature(@NotNull final PluginDescriptor descriptor, @NotNull SBuildServer sBuildServer) {
         this.descriptor = descriptor;
+        this.buildServer = sBuildServer;
     }
     
     public String getPluginVersion() {
     	return descriptor.getPluginVersion();
     }
     public String getTeamCityVersion() {
-    	return teamCityVersion;
-    }
-    public void setTeamCityVersion(String version) {
-    	this.teamCityVersion = version;
+    	return Byte.toString(buildServer.getServerMajorVersion()) + "." + Byte.toString(buildServer.getServerMinorVersion());
     }
 
     @NotNull
     @Override
-    public String getType()
-    {
+    public String getType() {
         return "com.crossbrowsertesting.teamcity";
     }
 
     @NotNull
     @Override
-    public String getDisplayName()
-    {
-        return "CrossBrowserTesting.com Build Feature";
+    public String getDisplayName() {
+        return "CrossBrowserTesting.com";
     }
 
     @Nullable
     @Override
-    public String getEditParametersUrl()
-    {
+    public String getEditParametersUrl() {
         return descriptor.getPluginResourcesPath("feature.html");
-    }
-
-    @NotNull
-    @Override
-    public String describeParameters(@NotNull Map<String, String> params)
-    {
-        return "";
-
     }
 
     @Nullable
     @Override
     public PropertiesProcessor getParametersProcessor() {
-        final CBTServerKeyNames keyNames = new CBTServerKeyNames();
         return new PropertiesProcessor() {
-        	
             private void validate(@NotNull final Map<String, String> properties, @NotNull final String key, @NotNull final String message, @NotNull final Collection<InvalidProperty> res) {
                 if (jetbrains.buildServer.util.StringUtil.isEmptyOrSpaces(properties.get(key))) {
                     res.add(new InvalidProperty(key, message));
                 }
             }
-
             @NotNull
             public Collection<InvalidProperty> process(@Nullable final Map<String, String> propertiesMap) {
             	params = propertiesMap;
@@ -97,10 +84,16 @@ public class CBTBuildFeature extends BuildFeature {
                 if (propertiesMap == null) {
                     return result;
                 }
-
                 validate(propertiesMap, "username", "Username must be specified", result);
                 validate(propertiesMap, "apikey", "Apikey must be specified", result);
-
+                if (result.isEmpty()) {
+                	String username = propertiesMap.get("username");
+                	String apikey = propertiesMap.get("apikey");
+                	Account user = new Account(username, apikey);
+                	if (user.connectionSuccessful) {
+                		user.sendMixpanelEvent("TeamCity Plugin Downloaded");
+                	}
+                }
                 return result;
             }
         };
@@ -108,15 +101,13 @@ public class CBTBuildFeature extends BuildFeature {
 
     @Nullable
     @Override
-    public Map<String, String> getDefaultParameters()
-    {
+    public Map<String, String> getDefaultParameters() {
         final Map<String, String> map = new HashMap<String, String>();
         return map;
     }
 
     @Override
-    public boolean isMultipleFeaturesPerBuildTypeAllowed()
-    {
-        return true;
+    public boolean isMultipleFeaturesPerBuildTypeAllowed() {
+        return false;
     }
 }

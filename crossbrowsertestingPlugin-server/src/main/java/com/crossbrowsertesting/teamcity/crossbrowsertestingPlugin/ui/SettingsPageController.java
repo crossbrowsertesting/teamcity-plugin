@@ -28,10 +28,12 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin.Selenium;
+import com.crossbrowsertesting.api.Selenium;
+
 
 public class SettingsPageController extends BaseController {
-	
+	private Selenium seleniumApi = new Selenium();
+
     @NotNull
     private final PluginDescriptor descriptor;
     //private Selenium se = new Selenium();
@@ -48,6 +50,7 @@ public class SettingsPageController extends BaseController {
     	//params.put("operating_systems", se.configurations);
     	params.put("jsp_home", this.descriptor.getPluginResourcesPath());
     	params.put("jquery", this.descriptor.getPluginResourcesPath("lib/jquery-3.1.0.min.js"));
+    	params.put("selenium_browsers", seleniumApi.configurationsAsJson);
         return new ModelAndView(descriptor.getPluginResourcesPath("feature.jsp"), params);
 
     }
