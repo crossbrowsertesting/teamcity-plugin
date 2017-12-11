@@ -16,7 +16,7 @@
             <useAllReactorProjects>true</useAllReactorProjects>
             <includes>
                 <include>com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin:crossbrowsertestingPlugin-agent</include>
-                <include>com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin:crossbrowsertestingPlugin-common</include>
+                <!--<include>com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin:crossbrowsertestingPlugin-common</include>-->
             </includes>
             <binaries>
                 <outputDirectory>lib</outputDirectory>

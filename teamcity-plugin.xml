@@ -3,7 +3,7 @@
   <info>
     <name>crossbrowsertestingPlugin</name>
     <display-name>crossbrowsertestingPlugin</display-name>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <description>This plugin integrates TeamCity users with Selenium Testing and Screenshot Testing on CrossBrowserTesting.com. CrossBrowserTesting.com provides cross browser testing of websites, webpages, and web applications on Windows, Macs, and real iPhones, iPads, and Android Phones and Tablets.</description>
     <download-url>https://github.com/crossbrowsertesting/teamcity-plugin/releases/latest</download-url>
     <email>info@crossbrowsertesting.com</email>

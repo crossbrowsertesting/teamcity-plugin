@@ -4,7 +4,7 @@
   <parent>
     <artifactId>crossbrowsertestingPlugin</artifactId>
     <groupId>com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin</groupId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
   </parent>
   <artifactId>build</artifactId>
   <packaging>pom</packaging>
@@ -24,17 +24,17 @@
       <dependency>
            <groupId>com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin</groupId>
            <artifactId>crossbrowsertestingPlugin-agent</artifactId>
-           <version>1.0.0-SNAPSHOT</version>
+           <version>1.1.0-SNAPSHOT</version>
       </dependency>
       <dependency>
            <groupId>com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin</groupId>
            <artifactId>crossbrowsertestingPlugin-server</artifactId>
-           <version>1.0.0-SNAPSHOT</version>
+           <version>1.1.0-SNAPSHOT</version>
       </dependency>
       <dependency>
 	    <groupId>com.github.crossbrowsertesting</groupId>
 	    <artifactId>ci-common</artifactId>
-	    <version>0.13-SNAPSHOT</version>
+	    <version>1.2.4</version>
 	  </dependency>
   </dependencies>
 

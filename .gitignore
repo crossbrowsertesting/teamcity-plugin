@@ -14,8 +14,15 @@ hs_err_pid*
 
 # Mac Files
 .DS_Store
-
+.idea
 # Output Directories
+build/*.iml
+crossbrowsertestingPlugin.iml
+crossbrowsertestingPlugin-agent/**/*.iml
+crossbrowsertestingPlugin-common/**/*.iml
+crossbrowsertestingPlugin-server/**/*.iml
+
+
 build/target/
 crossbrowsertestingPlugin-agent/target/
 crossbrowsertestingPlugin-common/target/

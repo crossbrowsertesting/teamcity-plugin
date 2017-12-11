@@ -1,6 +1,7 @@
 package com.crossbrowsertesting.teamcity.crossbrowsertestingPlugin;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class LifeCycleAdapter extends AgentLifeCycleAdapter {
 	private Map<String, String> stringToMap(String mapAsString) {
 		mapAsString = mapAsString.substring(1, mapAsString.length()-1); //remove curly brackets
 		String[] keyValuePairs = mapAsString.split(","); //split the string to create key-value pairs
-		Map<String,String> map = new HashMap<>();               
+		Map<String,String> map = new HashMap<String, String>();
 		for(String pair : keyValuePairs) //iterate over the pairs
 		{
 		    String[] entry = pair.split("="); //split the pairs to get key and value 
@@ -53,17 +54,31 @@ public class LifeCycleAdapter extends AgentLifeCycleAdapter {
 		String apikey = params.get("apikey");
 		
 		// local tunnel
+
 		if (params.get("useLocalTunnel") != null && params.get("useLocalTunnel").equals("true")) {
+
 			tunnel = new LocalTunnel(username, apikey);
-			if (tunnel.isTunnelRunning) {
-				runningBuild.getBuildLogger().message(Constants.TUNNEL_NO_NEED_TO_START);
-			} else {
+			if (!tunnel.isTunnelRunning) {
+				runningBuild.getBuildLogger().message(Constants.TUNNEL_NEED_TO_START);
 				try {
-					tunnel.start();
-					runningBuild.getBuildLogger().message(Constants.TUNNEL_START);
-				} catch (IOException e) {
-					runningBuild.getBuildLogger().error(Constants.TUNNEL_START_FAIL);
+					tunnel.start(true);
+					runningBuild.getBuildLogger().message(Constants.TUNNEL_WAITING);
+					for (int i=1 ; i<15 && !tunnel.isTunnelRunning ; i++) {
+						//will check every 2 seconds for upto 30 to see if the tunnel connected
+						Thread.sleep(4000);
+						tunnel.queryTunnel();
+					}
+					if (tunnel.isTunnelRunning) {
+						runningBuild.getBuildLogger().message(Constants.TUNNEL_CONNECTED);
+					}else {
+						throw new Error(Constants.TUNNEL_START_FAIL);
+					}
+				}catch (URISyntaxException ue) {} catch(IOException ioe) {}catch (InterruptedException ie) {
+					//log.finer("err: "+e);
+					throw new Error(Constants.TUNNEL_START_FAIL);
 				}
+			} else {
+				runningBuild.getBuildLogger().message(Constants.TUNNEL_NO_NEED_TO_START);
 			}
 		}
 
